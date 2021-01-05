@@ -1,0 +1,225 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>du3_task3</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-01-04"><meta name="DC.source" content="du3_task3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">New weights are:</a></li><li><a href="#2">Data and weights:</a></li><li><a href="#3">Forward and Backward:</a></li></ul></div><h2 id="1">New weights are:</h2><pre class="codeinput">w_i_hb_new = [1.4079    0.3921   -0.0079
+              -1.9913    0.7913   -0.6087];
+
+w_h_ob_new = [2.0970   -1.0247    0.3749
+              0.9758    0.8998   -0.5026];
+</pre><h2 id="2">Data and weights:</h2><pre class="codeinput"><span class="comment">% Data</span>
+p = [-1;1];
+d = [0.3 ; 0.3];
+
+<span class="comment">% Network weights</span>
+w_i_hb = [ 1.4 0.4 0.0 ; -2.0 0.8 -0.6 ];
+w_h_ob = [ 2.1 -1.0 0.4 ; 1.0 1.1 -0.3 ];
+lambda = 2;
+</pre><h2 id="3">Forward and Backward:</h2><pre class="codeinput"><span class="comment">% Forward</span>
+y_h = logsig(lambda * w_i_hb * [p;1]);
+y_o = logsig(lambda * w_h_ob * [y_h;1])
+e1 = (y_o - d)'*(y_o - d)
+
+<span class="comment">% Backward</span>
+a = 1.5;
+
+<span class="comment">% 1. hidden  &lt;--- output</span>
+delta_o = (d-y_o) .* lambda .* y_o .* (1-y_o) <span class="comment">% shape (2, 1)</span>
+grad1 = delta_o * [y_h;1]'  <span class="comment">% shape (2, 3)</span>
+w_h_ob1 = w_h_ob + a * grad1 <span class="comment">% shape (2, 3)</span>
+
+<span class="comment">% 2. input  &lt;--- hidden</span>
+<span class="comment">% s kazdou hodnout z delta_o vynasobit radek z w_h_ob a secist po radcich</span>
+A = sum(diag( delta_o') * w_h_ob, 2); <span class="comment">% shape (2, 1)</span>
+delta_h =   A .* lambda .* y_h .* (1-y_h)  <span class="comment">% shape (2, 1)</span>
+grad2 = delta_h * [p1; 1]'    <span class="comment">% shape (2, 3)</span>
+w_i_hb1 = w_i_hb +  a * grad2 <span class="comment">% shape (2, 3)</span>
+
+<span class="comment">% Forward po druhe (err je mensi)</span>
+y_h = logsig(lambda * w_i_hb1 * [p;1])
+y_o = logsig(lambda * w_h_ob1 * [y_h;1])
+e1
+e2 = (y_o - d)'*(y_o - d)
+</pre><pre class="codeoutput">
+y_o =
+
+    0.3374
+    0.8596
+
+
+e1 =
+
+    0.3145
+
+
+delta_o =
+
+   -0.0167
+   -0.1351
+
+
+grad1 =
+
+   -0.0020   -0.0165   -0.0167
+   -0.0161   -0.1335   -0.1351
+
+
+w_h_ob1 =
+
+    2.0970   -1.0247    0.3749
+    0.9758    0.8998   -0.5026
+
+
+delta_h =
+
+   -0.0053
+   -0.0058
+
+
+grad2 =
+
+         0         0   -0.0053
+         0         0   -0.0058
+
+
+w_i_hb1 =
+
+    1.4000    0.4000   -0.0079
+   -2.0000    0.8000   -0.6087
+
+
+y_h =
+
+    0.1176
+    0.9877
+
+
+y_o =
+
+    0.3140
+    0.7314
+
+
+e1 =
+
+    0.3145
+
+
+e2 =
+
+    0.1863
+
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% New weights are:
+w_i_hb_new = [1.4079    0.3921   -0.0079
+              -1.9913    0.7913   -0.6087];
+   
+w_h_ob_new = [2.0970   -1.0247    0.3749
+              0.9758    0.8998   -0.5026];
+
+%% Data and weights:
+
+% Data
+p = [-1;1];
+d = [0.3 ; 0.3];
+
+% Network weights
+w_i_hb = [ 1.4 0.4 0.0 ; -2.0 0.8 -0.6 ];
+w_h_ob = [ 2.1 -1.0 0.4 ; 1.0 1.1 -0.3 ];
+lambda = 2;
+%% Forward and Backward:
+
+% Forward
+y_h = logsig(lambda * w_i_hb * [p;1]);
+y_o = logsig(lambda * w_h_ob * [y_h;1])
+e1 = (y_o - d)'*(y_o - d)
+
+% Backward
+a = 1.5;
+
+% 1. hidden  <REPLACE_WITH_DASH_DASH- output 
+delta_o = (d-y_o) .* lambda .* y_o .* (1-y_o) % shape (2, 1)
+grad1 = delta_o * [y_h;1]'  % shape (2, 3)
+w_h_ob1 = w_h_ob + a * grad1 % shape (2, 3)
+
+% 2. input  <REPLACE_WITH_DASH_DASH- hidden 
+% s kazdou hodnout z delta_o vynasobit radek z w_h_ob a secist po radcich
+A = sum(diag( delta_o') * w_h_ob, 2); % shape (2, 1)
+delta_h =   A .* lambda .* y_h .* (1-y_h)  % shape (2, 1)
+grad2 = delta_h * [p1; 1]'    % shape (2, 3)
+w_i_hb1 = w_i_hb +  a * grad2 % shape (2, 3)
+
+% Forward po druhe (err je mensi)
+y_h = logsig(lambda * w_i_hb1 * [p;1])
+y_o = logsig(lambda * w_h_ob1 * [y_h;1])
+e1
+e2 = (y_o - d)'*(y_o - d)
+
+##### SOURCE END #####
+--></body></html>
